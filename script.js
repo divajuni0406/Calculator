@@ -37,15 +37,7 @@ const inputOperator = (operator) => {
 
 const equalSign = document.querySelector(".equal-sign");
 equalSign.addEventListener("click", () => {
-  if (calculationOperator === "+") {
-    currentNumber = parseFloat(prevNumber) + parseFloat(currentNumber);
-  } else if (calculationOperator === "-") {
-    currentNumber = parseFloat(prevNumber) - parseFloat(currentNumber);
-  } else if (calculationOperator === "/") {
-    currentNumber = parseFloat(prevNumber) / parseFloat(currentNumber);
-  } else if (calculationOperator === "*") {
-    currentNumber = parseFloat(prevNumber) * parseFloat(currentNumber);
-  } else currentNumber = 0;
+  calculate();
   updateScreen(currentNumber);
 });
 
@@ -63,8 +55,11 @@ const clearAll = () => {
 
 const deleteBtn = document.querySelector(".delete");
 deleteBtn.addEventListener("click", () => {
-  calculatorScreen.value = calculatorScreen.value.slice(0, -1);
   currentNumber = currentNumber.slice(0, -1);
+  if (currentNumber.length === 0) {
+    clearAll();
+  }
+  updateScreen(currentNumber);
 });
 
 const percentageNumber = document.querySelector(".percentage");
@@ -86,22 +81,25 @@ inputDecimal = (dot) => {
   currentNumber += dot;
 };
 
-// const calculate = () => {
-//   let result = "";
-//   switch (calculationOperator) {
-//     case "+":
-//       result = parseFloat(prevNumber) + parseFloat(currentNumber);
-//       break;
-//     case "-":
-//       result = parseFloat(prevNumber) - parseFloat(currentNumber);
-//       break;
-//     case "/":
-//       result = parseFloat(prevNumber) / parseFloat(currentNumber);
-//       break;
-//     case "*":
-//       result = parseFloat(prevNumber) * parseFloat(currentNumber);
-//       break;
-//   }
-//   currentNumber = result;
-//   calculationOperator = "";
-// };
+const calculate = () => {
+  let result = "";
+  switch (calculationOperator) {
+    case "+":
+      result = parseFloat(prevNumber) + parseFloat(currentNumber);
+      break;
+    case "-":
+      result = parseFloat(prevNumber) - parseFloat(currentNumber);
+      break;
+    case "/":
+      result = parseFloat(prevNumber) / parseFloat(currentNumber);
+      break;
+    case "*":
+      result = parseFloat(prevNumber) * parseFloat(currentNumber);
+      break;
+    case "":
+      result = 0;
+      break;
+  }
+  currentNumber = result;
+  calculationOperator = "";
+};
