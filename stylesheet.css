@@ -1,6 +1,5 @@
 body {
     background-color: burlywood;
-    
 }
 
 .calculator {
@@ -44,7 +43,6 @@ button {
     font-size: 32px;
     color: #fff;
     width: 25%;
-    outline: none;
     border-radius: 10px;
     margin-right: 8px;
     margin-bottom: 8px;
@@ -70,4 +68,20 @@ button:active {
 
 .operator:hover, .equal-sign:hover {
     background-color: darkorange;
+}
+
+@media only screen and (max-width : 500px) {
+    .calculator {
+        margin-top: 80px;
+        width: 300px;
+    }
+
+    .calculator-screen {
+        width: 85%;
+        height: 80px;
+    }
+
+    button {
+        height: 65px;
+    }
 }
